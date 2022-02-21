@@ -46,3 +46,32 @@ version: 1.0
         body:
           application/json:
 
+/users/send_otp:
+  displayName: Update refer reward money
+  post:
+    description: Update refer reward money
+    body:
+      application/json:
+        type: |
+          {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "required": true
+              },
+              "otp": {
+                "type": "number"
+              }
+            }
+          }
+        example: |
+          {
+            "email": "john.doe@email.com",
+            "otp": 4587
+          }
+    responses:
+      200:
+        body:
+          application/json:
+
