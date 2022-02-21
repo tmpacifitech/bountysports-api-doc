@@ -460,3 +460,553 @@ version: 1.0
         body:
           application/json:
 
+/users/blockunblockuser:
+  displayName: Block user
+  post:
+    description: Block user
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/checkusernamesignup:
+  displayName: Check if usernames exist before signup
+  post:
+    description: Check if usernames exist before signup
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/checkusernameoremail:
+  displayName: Check username or email if exists
+  post:
+    description: Check username or email if exists
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/checkusernameeditprofile:
+  displayName: Check user can edit profile
+  post:
+    description: Check user can edit profile
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/getreferredusers:
+  displayName: Get referred users
+  post:
+    description: Get referred users
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/getpromocodes:
+  displayName: Get promo codes
+  post:
+    description: Get promo codes
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/addpromocode:
+  displayName: Add promo code
+  post:
+    description: Add promo code
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/editpromocode:
+  displayName: Edit promo code
+  post:
+    description: Edit promo code
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/getcommunicationpref:
+  displayName: Get communication preference
+  post:
+    description: Get communication preference
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/editcommunicationpref:
+  displayName: Edit communication preference
+  post:
+    description: Edit communication preference
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/updateappusetime:
+  displayName: Update app use time
+  post:
+    description: Update app use time
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/acceptnewterms:
+  displayName: Accept new terms
+  post:
+    description: Accept new terms
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/sports/getall:
+  displayName: Get all sports
+  post:
+    description: Get all sports
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/matches/getmatchbysports:
+  displayName: Get match by sports
+  post:
+    description: Get match by sports
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/matches/getmatchbypgasports:
+  displayName: Get match by pga sports
+  post:
+    description: Get match by pga sports
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/matches/updateMatchResultAdmin:
+  displayName: Update match result by admin
+  post:
+    description: Update match result by admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/matches/editmatchodds:
+  displayName: Edit match odds
+  post:
+    description: Edit match odds
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/selection_made:
+  displayName: Make contest selection
+  post:
+    description: Make contest selection
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getcontestusersadmin:
+  displayName: Get contest users for admin
+  post:
+    description: Get contest users for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getmacthesbycontestadmin:
+  displayName: Get matches by contest for admin
+  post:
+    description: Get matches by contest for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/updatecontestuserpointadmin:
+  displayName: Update contest user point for admin
+  post:
+    description: Update contest user point for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/createcontest:
+  displayName: Create contest
+  post:
+    description: Create contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getupcomingcontest:
+  displayName: Get upcoming contest
+  post:
+    description: Get upcoming contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getfeaturedcontest:
+  displayName: Get featured contest
+  post:
+    description: Get featured contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/single:
+  displayName: Get single contest
+  post:
+    description: Get single contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/contestmatchdetails:
+  displayName: Get contest match details
+  post:
+    description: Get contest match details
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/joincontest:
+  displayName: Join test
+  post:
+    description: Join test
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/editcontestmatches:
+  displayName: Edit contest matches
+  post:
+    description: Edit contest matches
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/leaderboard:
+  displayName: Get leader board
+  post:
+    description: Get leader board
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getlivecontest:
+  displayName: Get live contests
+  post:
+    description: Get live contests
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getpastcontest:
+  displayName: Get past contests
+  post:
+    description: Get past contests
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/downloadpastcontestadmin:
+  displayName: Download past contests for admin
+  post:
+    description: Download past contests for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getlivecontestadmin:
+  displayName: Get live contests for admin
+  post:
+    description: Get live contests for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getpastcontestadmin:
+  displayName: Get past contests for admin
+  post:
+    description: Get past contests for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/getupcomingcontestadmin:
+  displayName: Get upcoming contests by admin
+  post:
+    description: Get upcoming contests by admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/singleadmin:
+  displayName: Get single contest for admin
+  post:
+    description: Get single contest for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/deletecontest:
+  displayName: Delete contest
+  post:
+    description: Delete contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/publishcontest:
+  displayName: Publish contest
+  post:
+    description: Publish contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/featurethecontest:
+  displayName: Feature contest
+  post:
+    description: Feature contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/unfeaturethecontest:
+  displayName: Unfeature contest
+  post:
+    description: Unfeature contest
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/contests/endContestAdmin:
+  displayName: End contest for admin
+  post:
+    description: End contest for admin
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/savehomepagecontent:
+  displayName: Save home page content
+  post:
+    description: Save home page content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/uploadbase64:
+  displayName: Upload base64
+  post:
+    description: Upload base64
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/gethomepagecontent:
+  displayName: Get homepage content
+  post:
+    description: Get homepage content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/gethowtoplaypagecontent:
+  displayName: Get how to play page content
+  post:
+    description: Get how to play page content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/savehowtoplaypagecontent:
+  displayName: Save how to play page content
+  post:
+    description: Save how to play page content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/getsimplepagecontent:
+  displayName: Get simple play page content
+  post:
+    description: Get simple play page content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/savesimplepagecontent:
+  displayName: Save simple page content
+  post:
+    description: Save simple page content
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/cms/short-url:
+  /{code}:
+    displayName: Get how to play page content
+    post:
+      description: Get how to play page content
+      body:
+        application/json:
+      responses:
+        200:
+          body:
+            application/json:
+
+/cms/appversion:
+  displayName: Get appversion
+  post:
+    description: Get appversion
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
