@@ -1,0 +1,111 @@
+#%RAML 1.0
+title: BountySports API Documentation
+baseUri: https://bountysports.com/
+version: 1.0
+
+/users/update_user_refer_code:
+  displayName: Update user refer code
+  post:
+    description: Update user refer code
+
+/users/get_refer_reward_money:
+  displayName: Get refer reward money
+  post:
+    description: Get refer reward money
+
+/users/update_refer_reward_money:
+  displayName: Update refer reward money
+  post:
+    description: Update refer reward money
+    body:
+      application/json:
+        type: |
+          {
+            "type": "object",
+            "properties": {
+              "reward_money": {
+                "type": "number",
+                "required": true
+              }
+            }
+          }
+        example: |
+          {
+            "reward_money": 100
+          }
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money
+
+# /users/update_refer_reward_money:
+#   displayName: Update user refer code
+#   post:
+#     description: Get refer reward money                                    
+
+# /orders:
+#   displayName: Orders
+#   get:
+#     is: [ assets.paging ]
+#     (monitoringInterval): 30
+#     description: Lists all orders of a specific user
+#     queryParameters:
+#       userId:
+#         type: string
+#         description: use to query all orders of a user
+#   post:
+#   /{orderId}:
+#     get:
+#       responses:
+#         200:
+#           body:
+#             application/json:
+#               type: assets.Order
+#             application/xml:
+#               type: !include schemas/order.xsd
