@@ -7,11 +7,19 @@ version: 1.0
   displayName: Update user refer code
   post:
     description: Update user refer code
+    responses:
+      200:
+        body:
+          application/json:
 
 /users/get_refer_reward_money:
   displayName: Get refer reward money
   post:
     description: Get refer reward money
+    responses:
+      200:
+        body:
+          application/json:
 
 /users/update_refer_reward_money:
   displayName: Update refer reward money
@@ -33,79 +41,8 @@ version: 1.0
           {
             "reward_money": 100
           }
+    responses:
+      200:
+        body:
+          application/json:
 
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money
-
-# /users/update_refer_reward_money:
-#   displayName: Update user refer code
-#   post:
-#     description: Get refer reward money                                    
-
-# /orders:
-#   displayName: Orders
-#   get:
-#     is: [ assets.paging ]
-#     (monitoringInterval): 30
-#     description: Lists all orders of a specific user
-#     queryParameters:
-#       userId:
-#         type: string
-#         description: use to query all orders of a user
-#   post:
-#   /{orderId}:
-#     get:
-#       responses:
-#         200:
-#           body:
-#             application/json:
-#               type: assets.Order
-#             application/xml:
-#               type: !include schemas/order.xsd
