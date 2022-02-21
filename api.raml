@@ -47,9 +47,9 @@ version: 1.0
           application/json:
 
 /users/send_otp:
-  displayName: Update refer reward money
+  displayName: Send user OTP code
   post:
-    description: Update refer reward money
+    description: Send user OTP code
     body:
       application/json:
         type: |
@@ -70,6 +70,391 @@ version: 1.0
             "email": "john.doe@email.com",
             "otp": 4587
           }
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/register:
+  displayName: Register a new user
+  post:
+    description: Register a new user. Requires recaptcha pass
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/register_manual:
+  displayName: Register a new user manually
+  post:
+    description: Register a new user manually
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/login:
+  displayName: User login
+  post:
+    description: User login
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/adminlogin:
+  displayName: Admin user login
+  post:
+    description: Admin user login
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/verifyotpadmin:
+  displayName: Verify admin user otp
+  post:
+    description: Verify admin user otp
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/verifyotp:
+  displayName: Verify user otp
+  post:
+    description: Verify user otp
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/resendotp:
+  displayName: Resend OTP code
+  post:
+    description: Resend OTP code
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/checksocialid:
+  displayName: Check user social id
+  post:
+    description: Check user social id
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/sociallogin:
+  displayName: Social login
+  post:
+    description: Social login
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/myprofile:
+  displayName: Get user profile
+  post:
+    description: Get user profile
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/updateprofile:
+  displayName: Update user profile
+  post:
+    description: Update user profile
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/changepassword:
+  displayName: Change user password
+  post:
+    description: Change user password
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/forgetpassword:
+  displayName: Send forgot password code
+  post:
+    description: Send forgot password code
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/getbalance:
+  displayName: Get user balance
+  post:
+    description: Get user balance
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/addbalanceadmin:
+  displayName: Add admin balance
+  post:
+    description: Add admin balance
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/addbalance:
+  displayName: Add user balance
+  post:
+    description: Add user balance
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/transactions:
+  displayName: Get transactions
+  post:
+    description: Get transactions
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/getbankdetails:
+  displayName: Get bank details
+  post:
+    description: Get bank details
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/savebankdetails:
+  displayName: Save bank details
+  post:
+    description: Save bank details
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/updatebankdetails:
+  displayName: Update bank details
+  post:
+    description: Update bank details
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/withdrawal:
+  displayName: Generate withdrawal request
+  post:
+    description: Generate withdrawal request
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/mywithdrawalrequests:
+  displayName: Get a user's withdrawal requests
+  post:
+    description: Get a user's withdrawal requests
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/withdrawalrequests:
+  displayName: Get all users withdrawal requests
+  post:
+    description: Get all users withdrawal requests
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/approvewithdrawal:
+  displayName: Approve withdrawal
+  post:
+    description: Approve withdrawal
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/rejectwithdrawal:
+  displayName: Reject withdrawal
+  post:
+    description: Reject withdrawal
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/alltransactions:
+  displayName: Get all transactions
+  post:
+    description: Get all transactions
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/allusers:
+  displayName: Get all users
+  post:
+    description: Get all users
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/usersbyid:
+  displayName: Get user by id
+  post:
+    description: Get user by id
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/downloadtransactions:
+  displayName: Download transactions
+  post:
+    description: Download transactions
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/downloadusers:
+  displayName: Download users
+  post:
+    description: Download users
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/downloadwithdrawalrequests:
+  displayName: Download withdrawal requests
+  post:
+    description: Download withdrawal requests
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/dashboard:
+  displayName: Get dashboard data
+  post:
+    description: Get dashboard data
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/saveleads:
+  displayName: Save leads
+  post:
+    description: Save leads
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/sendsupportmail:
+  displayName: Send support mail
+  post:
+    description: Send support mail
+    body:
+      application/json:
+    responses:
+      200:
+        body:
+          application/json:
+
+/users/removeuserflag:
+  displayName: Remove user flag
+  post:
+    description: Remove user flag
+    body:
+      application/json:
     responses:
       200:
         body:
