@@ -221,35 +221,93 @@ version: 1.0
 /users/getbalance:
   displayName: Get user balance
   post:
-    description: Get user balance
+    description: Returns user balance and promotion balance
     body:
       application/json:
+        example: |
+          {
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": 1200.5,
+                "promotion_blc": 400
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "Invalid User ID."
+              }
 
 /users/addbalanceadmin:
   displayName: Add admin balance
   post:
-    description: Add admin balance
+    description: Same as /users/addbalance. The difference is payment_transaction_id is null and payment_gateway is "Promotion" for new transaction.
     body:
       application/json:
+        example: |
+          {
+            "user_id": 1,
+            "amount": 100,
+            "type": 0 // check /users/alltransactions response example
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success."
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "Invalid User ID."
+              }
 
 /users/addbalance:
   displayName: Add user balance
   post:
-    description: Add user balance
+    description: Update user balance, insert new transaction and update hubspot data.
     body:
       application/json:
+        example: |
+          {
+            "user_id": 1,
+            "amount": 100,
+            "transaction_id": "txid",
+            "payment_gateway": "Credit Card"
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success."
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "Invalid User ID."
+              }
 
 /users/transactions:
   displayName: Get transactions
@@ -257,10 +315,41 @@ version: 1.0
     description: Get transactions
     body:
       application/json:
+        example: |
+          {
+            "user_id": 123,
+            "page": 1,
+            "type": 0 // 0 = deposit , 1 = withdrawal , 2 = join bet , 3 = win bet , 4 = refund ,5= refrarl reward 6 = all
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    user_id: 123,
+                    amount: 10,
+                    payment_transaction_id: "txid",
+                    payment_gateway: "gateway",
+                    payment_date: 16403999,
+                    contest_id: "contestid",
+                    contest_name: "contestname",
+                    transaction_type: 0 // 0 = deposit , 1 = withdrawal , 2 = join bet , 3 = win bet , 4 = refund from a cancelled contest ,5 =Referral
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No transactions found."
+              }
 
 /users/getbankdetails:
   displayName: Get bank details
@@ -356,10 +445,43 @@ version: 1.0
     description: Get all transactions
     body:
       application/json:
+        example: |
+          {
+            "page": 1,
+            "from_date": 1645807582, // unix timestamp in seconds
+            "to_date": 1645808582, // unix timestamp in seconds
+            "type": 0 // 0 = deposit , 1 = withdrawal , 2 = join bet , 3 = win bet , 4 = refund ,5 =refrral 6 = all 
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    user_id: 123,
+                    amount: 10,
+                    payment_transaction_id: "txid",
+                    payment_gateway: "gateway",
+                    payment_date: 16403999,
+                    contest_id: "contestid",
+                    contest_name: "contestname",
+                    transaction_type: 0, // 0 = deposit , 1 = withdrawal , 2 = join bet , 3 = win bet , 4 = refund from a cancelled contest ,5 =Referral
+                    user_details: {} // User details object
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No data found."
+              }
 
 /users/allusers:
   displayName: Get all users
@@ -602,6 +724,30 @@ version: 1.0
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    name: "", // string().length(50).required(),
+                    logo: "", // string().length(50).required(),
+                    apiId: "", //string().length(100).required(),
+                    slug: "", // string().length(20).required(),
+                    isActive: 1, // number(),
+                    isDeletetd: 0, // number(),
+                    isMultiTeamSports: 1 // number() // 1 if multi team match sports like golf
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Sports Found."
+              }
 
 /matches/getmatchbysports:
   displayName: Get match by sports
@@ -609,10 +755,55 @@ version: 1.0
     description: Get match by sports
     body:
       application/json:
+        example: |
+          {
+            "sport_id": "",
+            "status": 0, // 0 or 1
+            "type": 0, // 0= single sport, 1=multisports
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    match_api_id: string().length(255).required(),
+                    sport_id: string().length(100).required(),
+                    t1Id: string().length(100).required(),
+                    t2Id: string().length(100).required(),
+                    t3Id: string().length(100), //for soccer
+                    t1Name: string().length(100).required(),
+                    t2Name: string().length(100).required(),
+                    t3Name: string().length(100), //for soccer
+                    t1ShortName: string().length(100).required(),
+                    t2ShortName: string().length(100).required(),
+                    t3ShortName: string().length(100), //for soccer
+                    t1Line: number(),
+                    t2Line: number(),
+                    drawLine: number(), //for soccer
+                    matchResult: number(), // 0 = pending , 1 = result comes, 2 = tie , 3 = abandoned
+                    winnerTeamId: string().length(100).required(),
+                    matchDate: number(),
+                    apiType: string(),
+                    team1Points: number(),
+                    team2Points: number(),
+                    teamDrawPoints: number(), //for soccer
+                    status: number() // 0= same odds , admin will update and not for the create contests ; 1 = active admin cant update odds
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Matches Found."
+              }
 
 /matches/getmatchbypgasports:
   displayName: Get match by pga sports
@@ -620,10 +811,47 @@ version: 1.0
     description: Get match by pga sports
     body:
       application/json:
+        example: |
+          {
+            "sport_id": ""
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    match_api_id:string().length(255).required(),  // torunament id
+                    sport_id:string().length(100).required(),   
+                    tournament_name:string().length(100).required(),
+                    matchResult:number(), // 0 = pending , 1 = result comes, 2 = tie , 3 = abandoned
+                    player_data: [
+                      {
+                       playerId:string(100),
+                        playerTournamentId:string(100),
+                        playerName:string(100),
+                        playerOdds:number(),
+                        rank:number(),
+                        isWin:boolean()
+                      }
+                    ],
+                    matchDate:number(),
+                    matchEndDate:number()
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Matches Found."
+              }
 
 /matches/updateMatchResultAdmin:
   displayName: Update match result by admin
@@ -664,10 +892,28 @@ version: 1.0
     description: Get contest users for admin
     body:
       application/json:
+        example: |
+          {
+            "contest_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // array of /single contest response
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/getmacthesbycontestadmin:
   displayName: Get matches by contest for admin
@@ -675,10 +921,28 @@ version: 1.0
     description: Get matches by contest for admin
     body:
       application/json:
+        example: |
+          {
+            "contest_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // array of /single contest response
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/updatecontestuserpointadmin:
   displayName: Update contest user point for admin
@@ -708,10 +972,30 @@ version: 1.0
     description: Get upcoming contest
     body:
       application/json:
+        example: |
+          {
+            "sport_id": "",
+            "page": 2,
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // array of /single contest response
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/getfeaturedcontest:
   displayName: Get featured contest
@@ -719,10 +1003,30 @@ version: 1.0
     description: Get featured contest
     body:
       application/json:
+        example: |
+          {
+            "sport_id": "",
+            "page": 2,
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // same as getupcomingcontest
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/single:
   displayName: Get single contest
@@ -730,10 +1034,48 @@ version: 1.0
     description: Get single contest
     body:
       application/json:
+        example: |
+          {
+            "contest_id": 123,
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": {
+                  sports_id: string().length(255).required(),
+                  title: string().length(255).required(),
+                  description: string().length(255).required(),
+                  entry_fee: number(),
+                  maximum_entry_slots: number(),
+                  number_of_top_players_win: number(), // in case of PGA else pass 0
+                  create_on: number(),
+                  is_active: number(),
+                  is_deleted: number(),
+                  priceDistribution: array().of(PriceDistrobutionSchema),
+                  PGAPlayersSchema: array().of(PGAPlayersSchema), // in case of PGA
+                  isMultiTeamContest: number(), // 1 =  in case of PGA, 0 = in case of others
+                  contestStartDate: number(),
+                  isContestEnded: number(),
+                  totalUserEnrolled: number(),
+                  isFeatured: number(),
+                  contestType: number(), //  0= single sport contest, 1 = multisportcontest
+                  multiSportsIds: array() // multiple sports ids
+                }
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Matches Found."
+              }
 
 /contests/contestmatchdetails:
   displayName: Get contest match details
@@ -774,10 +1116,42 @@ version: 1.0
     description: Get leader board
     body:
       application/json:
+        example: |
+          {
+            "contest_id": 2,
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [
+                  {
+                    contest_id: string().length(255).required(),
+                    user_id: object(),
+                    amount_paid: number(),
+                    joined_on: number(),
+                    rank: number(),
+                    points: number(),
+                    prizeWin: number(),
+                    rank_show: number(),
+                    tempPoints: number(), // for user blocked and unblocked condition
+                    isBlocked: number(), // for user blocked and unblocked condition
+                  }
+                ]
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Data Found."
+              }
 
 /contests/getlivecontest:
   displayName: Get live contests
@@ -785,10 +1159,30 @@ version: 1.0
     description: Get live contests
     body:
       application/json:
+        example: |
+          {
+            "sport_id": "",
+            "page": 2,
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // see /getupcomingcontest
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/getpastcontest:
   displayName: Get past contests
@@ -840,10 +1234,31 @@ version: 1.0
     description: Get upcoming contests by admin
     body:
       application/json:
+        example: |
+          {
+            "sport_id": "",
+            "page": 2,
+            "sort_total_players": "asc", // asc ,desc
+            "sort_live_in": "asc", // asc ,desc
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": [] // see /getupcomingcontest
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No contest found."
+              }
 
 /contests/singleadmin:
   displayName: Get single contest for admin
@@ -851,10 +1266,47 @@ version: 1.0
     description: Get single contest for admin
     body:
       application/json:
+        example: |
+          {
+            "contest_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "message": "Success.",
+                "data": {
+                  sports_id: string().length(255).required(),
+                  title: string().length(255).required(),
+                  description: string().length(255).required(),
+                  entry_fee: number(),
+                  maximum_entry_slots: number(),
+                  number_of_top_players_win: number(), // in case of PGA else pass 0
+                  create_on: number(),
+                  is_active: number(),
+                  is_deleted: number(),
+                  priceDistribution: array().of(PriceDistrobutionSchema),
+                  PGAPlayersSchema: array().of(PGAPlayersSchema), // in case of PGA
+                  isMultiTeamContest: number(), // 1 =  in case of PGA, 0 = in case of others
+                  contestStartDate: number(),
+                  isContestEnded: number(),
+                  totalUserEnrolled: number(),
+                  isFeatured: number(),
+                  contestType: number(), //  0= single sport contest, 1 = multisportcontest
+                  multiSportsIds: array() // multiple sports ids
+                }
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "status": 201,
+                "message": "No Matches Found."
+              }
 
 /contests/deletecontest:
   displayName: Delete contest
