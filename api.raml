@@ -180,10 +180,68 @@ version: 1.0
     description: Get user profile
     body:
       application/json:
+        example: |
+          {
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                status: 200,
+                data: {
+                  fname: string().length(50).required(),
+                  lname: string().length(50).required(),
+                  email: string().length(100).required(),
+                  mobileNo: string().length(20).required(),
+                  country: string().length(50).required(),
+                  address: string().length(255).required(),
+                  address2: string().length(255).required(),
+                  zipCode: string().length(50).required(),
+                  state: string().length(50).required(),
+                  city: string().length(50).required(),
+                  socialSecurityNo: string().length(50).required(),
+                  currency: string().length(50).required(),
+                  otp: string(),
+                  otpExpireTime: number(),
+                  password: string(),
+                  socialId: string(),
+                  socialIdType: string(), //fb , google
+                  userCode: string(), // for refrel code
+                  isActive: number(),
+                  isDeletetd: number(),
+                  registeredOn: number(),
+                  role: number(), // 0 = normal user , 1 = admin
+                  isIdVerified: number(), // 0 = not verified , 2 = submitterd , 1 = verified
+                  totalDeposit: number(),
+                  balance: number(),
+                  user_pic: string(),
+                  username: string(),
+                  is_blocked: number(),
+                  is_communication_enabled: number(),
+                  is_two_step: number(),
+                  deviceId: string(),
+                  deviceToken: string(),
+                  hubspot_ContactId: string(),
+                  referByCode: string(),
+                  isReferMoneyGet: number(),
+                  is_repeat_user: number(),
+                  is_bank_repeat: number(),
+                  mobile_push_enabled: number(),
+                  promoBalance: number(),
+                  isTermsAccepted: number()
+                }
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                status: 201,
+                message: "Your account is blocked"
+              }
 
 /users/updateprofile:
   displayName: Update user profile
@@ -500,10 +558,70 @@ version: 1.0
     description: Get user by id
     body:
       application/json:
+        example: |
+          {
+            "user_id": 123
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                status: 200,
+                message: "Success.",
+                data: {
+                  fname: string().length(50).required(),
+                  lname: string().length(50).required(),
+                  email: string().length(100).required(),
+                  mobileNo: string().length(20).required(),
+                  country: string().length(50).required(),
+                  address: string().length(255).required(),
+                  address2: string().length(255).required(),
+                  zipCode: string().length(50).required(),
+                  state: string().length(50).required(),
+                  city: string().length(50).required(),
+                  socialSecurityNo: string().length(50).required(),
+                  currency: string().length(50).required(),
+                  otp: string(),
+                  otpExpireTime: number(),
+                  password: string(),
+                  socialId: string(),
+                  socialIdType: string(), //fb , google
+                  userCode: string(), // for refrel code
+                  isActive: number(),
+                  isDeletetd: number(),
+                  registeredOn: number(),
+                  role: number(), // 0 = normal user , 1 = admin
+                  isIdVerified: number(), // 0 = not verified , 2 = submitterd , 1 = verified
+                  totalDeposit: number(),
+                  balance: number(),
+                  user_pic: string(),
+                  username: string(),
+                  is_blocked: number(),
+                  is_communication_enabled: number(),
+                  is_two_step: number(),
+                  deviceId: string(),
+                  deviceToken: string(),
+                  hubspot_ContactId: string(),
+                  referByCode: string(),
+                  isReferMoneyGet: number(),
+                  is_repeat_user: number(),
+                  is_bank_repeat: number(),
+                  mobile_push_enabled: number(),
+                  promoBalance: number(),
+                  isTermsAccepted: number(),
+                  totalBets: number()
+                }
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                status: 201,
+                message: "Invalid User ID."
+              }
 
 /users/downloadtransactions:
   displayName: Download transactions
@@ -533,10 +651,26 @@ version: 1.0
     description: Download withdrawal requests
     body:
       application/json:
+        example: |
+          {
+            "page": number,
+            "search_keywords": string
+          }
     responses:
       200:
         body:
           application/json:
+            example:: |
+              {
+                status: 200,
+                data: [
+                  {
+                    title: string().length(200).required(),
+                    created_on: number(),
+                    status: number() // 1 =active,  =inactive
+                  }
+                ]
+              }
 
 /users/dashboard:
   displayName: Get dashboard data
@@ -881,10 +1015,43 @@ version: 1.0
     description: Make contest selection
     body:
       application/json:
+        example: |
+          {
+            "contest_id": number | string,
+            "user_id": number | string
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                "status": 200,
+                "data": [
+                  {
+                    sports_id: string().length(255).required(),
+                    title: string().length(255).required(),
+                    description: string().length(255).required(),
+                    entry_fee: number(),
+                    maximum_entry_slots: number(),
+                    number_of_top_players_win: number(), // in case of PGA else pass 0
+                    create_on: number(),
+                    is_active: number(),
+                    is_deleted: number(),
+                    priceDistribution: array().of(PriceDistrobutionSchema),
+                    PGAPlayersSchema: array().of(PGAPlayersSchema), // in case of PGA
+                    isMultiTeamContest: number(), // 1 =  in case of PGA, 0 = in case of others
+                    contestStartDate: number(),
+                    isContestEnded: number(),
+                    totalUserEnrolled: number(),
+                    isFeatured: number(),
+                    contestType: number(), //  0= single sport contest, 1 = multisportcontest
+                    multiSportsIds: array() // multiple sports ids
+                    isJoin: 0 | 1,
+                    isClosed: 0 | 1
+                  }
+                ]
+              }
 
 /contests/getcontestusersadmin:
   displayName: Get contest users for admin
@@ -986,7 +1153,30 @@ version: 1.0
               {
                 "status": 200,
                 "message": "Success.",
-                "data": [] // array of /single contest response
+                "data": [
+                  {
+                    sports_id: string().length(255).required(),
+                    title: string().length(255).required(),
+                    description: string().length(255).required(),
+                    entry_fee: number(),
+                    maximum_entry_slots: number(),
+                    number_of_top_players_win: number(), // in case of PGA else pass 0
+                    create_on: number(),
+                    is_active: number(),
+                    is_deleted: number(),
+                    priceDistribution: array().of(PriceDistrobutionSchema),
+                    PGAPlayersSchema: array().of(PGAPlayersSchema), // in case of PGA
+                    isMultiTeamContest: number(), // 1 =  in case of PGA, 0 = in case of others
+                    contestStartDate: number(),
+                    isContestEnded: number(),
+                    totalUserEnrolled: number(),
+                    isFeatured: number(),
+                    contestType: number(), //  0= single sport contest, 1 = multisportcontest
+                    multiSportsIds: array() // multiple sports ids
+                    isJoin: 0 or 1,
+                    isClosed: 0 or 1
+                  }
+                ]
               }
       201:
         body:
@@ -1083,10 +1273,45 @@ version: 1.0
     description: Get contest match details
     body:
       application/json:
+        example: |
+          {
+            match_ids: "1,2,3,4,5"
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                status: 200,
+                data: [
+                  {
+                    match_api_id: string().length(255).required(),
+                    sport_id: string().length(100).required(),
+                    t1Id: string().length(100).required(),
+                    t2Id: string().length(100).required(),
+                    t3Id: string().length(100), //for soccer
+                    t1Name: string().length(100).required(),
+                    t2Name: string().length(100).required(),
+                    t3Name: string().length(100), //for soccer
+                    t1ShortName: string().length(100).required(),
+                    t2ShortName: string().length(100).required(),
+                    t3ShortName: string().length(100), //for soccer
+                    t1Line: number(),
+                    t2Line: number(),
+                    drawLine: number(), //for soccer
+                    matchResult: number(), // 0 = pending , 1 = result comes, 2 = tie , 3 = abandoned
+                    winnerTeamId: string().length(100).required(),
+                    matchDate: number(),
+                    apiType: string(),
+                    team1Points: number(),
+                    team2Points: number(),
+                    teamDrawPoints: number(), //for soccer
+                    status: number() // 0= same odds , admin will update and not for the create contests ; 1 = active admin cant update odds,
+                    sportName: string
+                  }
+                ]
+              }
 
 /contests/joincontest:
   displayName: Join test
@@ -1173,7 +1398,28 @@ version: 1.0
               {
                 "status": 200,
                 "message": "Success.",
-                "data": [] // see /getupcomingcontest
+                "data": [
+                  {
+                    sports_id: string().length(255).required(),
+                    title: string().length(255).required(),
+                    description: string().length(255).required(),
+                    entry_fee: number(),
+                    maximum_entry_slots: number(),
+                    number_of_top_players_win: number(), // in case of PGA else pass 0
+                    create_on: number(),
+                    is_active: number(),
+                    is_deleted: number(),
+                    priceDistribution: array().of(PriceDistrobutionSchema),
+                    PGAPlayersSchema: array().of(PGAPlayersSchema), // in case of PGA
+                    isMultiTeamContest: number(), // 1 =  in case of PGA, 0 = in case of others
+                    contestStartDate: number(),
+                    isContestEnded: number(),
+                    totalUserEnrolled: number(),
+                    isFeatured: number(),
+                    contestType: number(), //  0= single sport contest, 1 = multisportcontest
+                    multiSportsIds: array() // multiple sports ids
+                  }
+                ]
               }
       201:
         body:
@@ -1314,10 +1560,27 @@ version: 1.0
     description: Delete contest
     body:
       application/json:
+        example: |
+          {
+            "contest_id": string | number
+          }
     responses:
       200:
         body:
           application/json:
+            example: |
+              {
+                status: 200,
+                message: "Contest deleted successfully."
+              }
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                status: 201,
+                message: "Contest not found."
+              }
 
 /contests/publishcontest:
   displayName: Publish contest
